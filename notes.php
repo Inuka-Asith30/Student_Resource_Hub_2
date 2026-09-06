@@ -28,9 +28,7 @@ $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <li class="nav-item"><a class="nav-link" href="dashboard.php">🏠 Dashboard</a></li>
         <li class="nav-item"><a class="nav-link active" aria-current="page" href="notes.php">📄 Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="upload.php">⬆️ Upload Notes</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact.php">✉️ Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="auth/register.php">📝 Register</a></li>
-      </ul>
+        </ul>
       <div class="sidebar-logout">
         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">🚪 Logout</a>
       </div>

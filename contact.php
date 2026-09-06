@@ -44,9 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <li class="nav-item"><a class="nav-link" href="dashboard.php">🏠 Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="notes.php">📄 Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="upload.php">⬆️ Upload Notes</a></li>
-        <li class="nav-item"><a class="nav-link active" href="contact.php">✉️ Contact</a></li>
-        <li class="nav-item"><a class="nav-link" href="auth/register.php">📝 Register</a></li>
-      </ul>
+        </ul>
       <div class="sidebar-logout">
         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">🚪 Logout</a>
       </div>
