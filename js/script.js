@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initAnimations();
   initNotesSearch();
   initLoginValidation();
+  initRegisterValidation();
   initUploadValidation();
 });
 
@@ -239,4 +240,47 @@ function ensureValidationStylesInjected() {
     .input-error { border-color: #dc2626 !important; box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important; }
   \`;
   document.head.appendChild(style);
+}
+
+function initRegisterValidation() {
+  const form = document.getElementById('registerForm');
+  if (!form) return;
+  const usernameInput = form.querySelector('#username');
+  const emailInput = form.querySelector('#email');
+  const passwordInput = form.querySelector('#password');
+  if (!usernameInput || !emailInput || !passwordInput) return;
+
+  const usernameError = createErrorElement(usernameInput);
+  const emailError = createErrorElement(emailInput);
+  const passwordError = createErrorElement(passwordInput);
+  const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+
+  function validateUsername() {
+    if (usernameInput.value.trim() === '') { showError(usernameInput, usernameError, 'Username is required.'); return false; }
+    clearError(usernameInput, usernameError); return true;
+  }
+
+  function validateEmail() {
+    const value = emailInput.value.trim();
+    if (value === '') { showError(emailInput, emailError, 'Email is required.'); return false; }
+    if (!emailPattern.test(value)) { showError(emailInput, emailError, 'Invalid email.'); return false; }
+    clearError(emailInput, emailError); return true;
+  }
+
+  function validatePassword() {
+    if (passwordInput.value.length < 6) { showError(passwordInput, passwordError, 'Password must be at least 6 chars.'); return false; }
+    clearError(passwordInput, passwordError); return true;
+  }
+
+  usernameInput.addEventListener('input', validateUsername);
+  emailInput.addEventListener('input', validateEmail);
+  passwordInput.addEventListener('input', validatePassword);
+
+  form.addEventListener('submit', function (e) {
+    if (!validateUsername() || !validateEmail() || !validatePassword()) {
+      e.preventDefault();
+    } else {
+      localStorage.setItem('isLoggedIn', 'true');
+    }
+  });
 }
