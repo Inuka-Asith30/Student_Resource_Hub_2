@@ -9,16 +9,15 @@ require_once 'includes/functions.php';
 require_once 'includes/db.php';
 requireLogin();
 
-// Fetch counts for stat cards
-$stmt = $pdo->query("SELECT COUNT(*) FROM notes");
-$notesCount = $stmt->fetchColumn();
+$stmt = $pdo->query("SELECT * FROM notes ORDER BY created_at DESC");
+$notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard | Student Notes Management System</title>
+  <title>Notes | Student Notes Management System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
@@ -32,8 +31,8 @@ $notesCount = $stmt->fetchColumn();
         <span>Campus<br />Portal</span>
       </a>
       <ul class="navbar-nav flex-column w-100">
-        <li class="nav-item"><a class="nav-link active" href="dashboard.php">🏠 Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="pastpapers.php">📄 Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="dashboard.php">🏠 Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="pastpapers.php">📄 Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="upload.php">⬆️ Upload Notes</a></li>
         </ul>
       <div class="sidebar-logout">
@@ -42,23 +41,31 @@ $notesCount = $stmt->fetchColumn();
     </nav>
     <main class="main-content">
       <div class="topbar">
-        <h1>Dashboard</h1>
+        <h1>Notes</h1>
         <div class="user-chip">
           <span class="avatar"><?= $initial ?></span><span><?= $username ?></span>
         </div>
       </div>
-      <div class="welcome-banner">
-        <h2>Welcome back, <?= $username ?>! 👋</h2>
-        <p>Manage and explore your student notes here.</p>
+      <div class="input-group search-bar">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by subject name (e.g. Physics, Maths...)" />
+        <button id="searchBtn" class="btn btn-primary" type="button">Search</button>
       </div>
-      <div class="row g-3">
-          <div class="col-md-4">
-              <div class="stat-card">
-                  <div class="stat-number"><?= htmlspecialchars($notesCount) ?></div>
-                  <div class="stat-label">Total Notes</div>
-              </div>
+      <section class="row g-3" id="papersGrid">
+        <?php foreach ($notes as $note): ?>
+        <div class="col-6 col-lg-4">
+          <div class="card paper-card h-100 border-0" data-subject="<?= htmlspecialchars(strtolower($note['subject_name'])) ?>">
+            <div class="subject-icon"><?= htmlspecialchars(strtoupper(substr($note['subject_name'], 0, 2))) ?></div>
+            <h3><?= htmlspecialchars($note['subject_name']) ?></h3>
+            <p class="paper-year">Year: <?= htmlspecialchars($note['note_year']) ?></p>
+            <a href="<?= htmlspecialchars($note['file_path']) ?>" target="_blank" class="btn download-btn" style="text-decoration:none;">⬇ View / Download</a>
           </div>
-      </div>
+        </div>
+        <?php endforeach; ?>
+        <?php if(empty($notes)): ?>
+          <p>No notes uploaded yet.</p>
+        <?php endif; ?>
+      </section>
+      <p class="no-results" id="noResults" style="display:none;">No Notes matched your search.</p>
     </main>
   </div>
   <!-- Logout Modal -->
@@ -86,16 +93,15 @@ $user = $stmt->fetch();
 $username = $user ? htmlspecialchars($user['username']) : 'Student';
 $initial = strtoupper(substr($username, 0, 2));
 
-// Fetch counts for stat cards
-$stmt = $pdo->query("SELECT COUNT(*) FROM notes");
-$notesCount = $stmt->fetchColumn();
+$stmt = $pdo->query("SELECT * FROM notes ORDER BY created_at DESC");
+$notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard | Student Notes Management System</title>
+  <title>Notes | Student Notes Management System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
@@ -109,8 +115,8 @@ $notesCount = $stmt->fetchColumn();
         <span>Campus<br />Portal</span>
       </a>
       <ul class="navbar-nav flex-column w-100">
-        <li class="nav-item"><a class="nav-link active" href="dashboard.php">🏠 Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="pastpapers.php">📄 Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="dashboard.php">🏠 Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="pastpapers.php">📄 Notes</a></li>
         <li class="nav-item"><a class="nav-link" href="upload.php">⬆️ Upload Notes</a></li>
         </ul>
       <div class="sidebar-logout">
@@ -119,23 +125,31 @@ $notesCount = $stmt->fetchColumn();
     </nav>
     <main class="main-content">
       <div class="topbar">
-        <h1>Dashboard</h1>
+        <h1>Notes</h1>
         <div class="user-chip">
           <span class="avatar"><?= $initial ?></span><span><?= $username ?></span>
         </div>
       </div>
-      <div class="welcome-banner">
-        <h2>Welcome back, <?= $username ?>! 👋</h2>
-        <p>Manage and explore your student notes here.</p>
+      <div class="input-group search-bar">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search by subject name (e.g. Physics, Maths...)" />
+        <button id="searchBtn" class="btn btn-primary" type="button">Search</button>
       </div>
-      <div class="row g-3">
-          <div class="col-md-4">
-              <div class="stat-card">
-                  <div class="stat-number"><?= htmlspecialchars($notesCount) ?></div>
-                  <div class="stat-label">Total Notes</div>
-              </div>
+      <section class="row g-3" id="papersGrid">
+        <?php foreach ($notes as $note): ?>
+        <div class="col-6 col-lg-4">
+          <div class="card paper-card h-100 border-0" data-subject="<?= htmlspecialchars(strtolower($note['subject_name'])) ?>">
+            <div class="subject-icon"><?= htmlspecialchars(strtoupper(substr($note['subject_name'], 0, 2))) ?></div>
+            <h3><?= htmlspecialchars($note['subject_name']) ?></h3>
+            <p class="paper-year">Year: <?= htmlspecialchars($note['note_year']) ?></p>
+            <a href="<?= htmlspecialchars($note['file_path']) ?>" target="_blank" class="btn download-btn" style="text-decoration:none;">⬇ View / Download</a>
           </div>
-      </div>
+        </div>
+        <?php endforeach; ?>
+        <?php if(empty($notes)): ?>
+          <p>No notes uploaded yet.</p>
+        <?php endif; ?>
+      </section>
+      <p class="no-results" id="noResults" style="display:none;">No Notes matched your search.</p>
     </main>
   </div>
   <!-- Logout Modal -->
