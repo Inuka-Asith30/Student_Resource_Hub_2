@@ -4,10 +4,10 @@ require_once 'includes/db.php';
 requireLogin();
 
 $stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
-$stmt->execute([<?php
-require_once 'includes/functions.php';
-require_once 'includes/db.php';
-requireLogin();
+$stmt->execute([$_SESSION['user_id']]);
+$user = $stmt->fetch();
+$username = $user ? htmlspecialchars($user['username']) : 'Student';
+$initial = strtoupper(substr($username, 0, 2));
 
 $stmt = $pdo->query("SELECT * FROM notes ORDER BY created_at DESC");
 $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
