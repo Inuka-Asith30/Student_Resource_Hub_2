@@ -4,10 +4,10 @@ require_once 'includes/db.php';
 requireLogin();
 
 $stmt = $pdo->prepare("SELECT username FROM users WHERE id = ?");
-$stmt->execute([<?php
-require_once 'includes/functions.php';
-require_once 'includes/db.php';
-requireLogin();
+$stmt->execute([$_SESSION['user_id']]);
+$user = $stmt->fetch();
+$username = $user ? htmlspecialchars($user['username']) : 'Student';
+$initial = strtoupper(substr($username, 0, 2));
 
 // Fetch counts for stat cards
 $stmt = $pdo->query("SELECT COUNT(*) FROM notes");
@@ -32,12 +32,12 @@ $notesCount = $stmt->fetchColumn();
         <span>Campus<br />Portal</span>
       </a>
       <ul class="navbar-nav flex-column w-100">
-        <li class="nav-item"><a class="nav-link active" href="dashboard.php">🏠 Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="pastpapers.php">📄 Notes</a></li>
-        <li class="nav-item"><a class="nav-link" href="upload.php">⬆️ Upload Notes</a></li>
+        <li class="nav-item"><a class="nav-link active" href="dashboard.php">ðŸ  Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="pastpapers.php">ðŸ“„ Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="upload.php">â¬†ï¸ Upload Notes</a></li>
         </ul>
       <div class="sidebar-logout">
-        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">🚪 Logout</a>
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">ðŸšª Logout</a>
       </div>
     </nav>
     <main class="main-content">
@@ -48,7 +48,7 @@ $notesCount = $stmt->fetchColumn();
         </div>
       </div>
       <div class="welcome-banner">
-        <h2>Welcome back, <?= $username ?>! 👋</h2>
+        <h2>Welcome back, <?= $username ?>! ðŸ‘‹</h2>
         <p>Manage and explore your student notes here.</p>
       </div>
       <div class="row g-3">
@@ -72,7 +72,7 @@ $notesCount = $stmt->fetchColumn();
         <div class="modal-body">Are you sure you want to log out?</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a href="auth/logout.php" class="btn btn-danger">🚪 Logout</a>
+          <a href="auth/logout.php" class="btn btn-danger">ðŸšª Logout</a>
         </div>
       </div>
     </div>
@@ -109,12 +109,12 @@ $notesCount = $stmt->fetchColumn();
         <span>Campus<br />Portal</span>
       </a>
       <ul class="navbar-nav flex-column w-100">
-        <li class="nav-item"><a class="nav-link active" href="dashboard.php">🏠 Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="pastpapers.php">📄 Notes</a></li>
-        <li class="nav-item"><a class="nav-link" href="upload.php">⬆️ Upload Notes</a></li>
+        <li class="nav-item"><a class="nav-link active" href="dashboard.php">ðŸ  Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="pastpapers.php">ðŸ“„ Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="upload.php">â¬†ï¸ Upload Notes</a></li>
         </ul>
       <div class="sidebar-logout">
-        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">🚪 Logout</a>
+        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">ðŸšª Logout</a>
       </div>
     </nav>
     <main class="main-content">
@@ -125,7 +125,7 @@ $notesCount = $stmt->fetchColumn();
         </div>
       </div>
       <div class="welcome-banner">
-        <h2>Welcome back, <?= $username ?>! 👋</h2>
+        <h2>Welcome back, <?= $username ?>! ðŸ‘‹</h2>
         <p>Manage and explore your student notes here.</p>
       </div>
       <div class="row g-3">
@@ -149,7 +149,7 @@ $notesCount = $stmt->fetchColumn();
         <div class="modal-body">Are you sure you want to log out?</div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <a href="auth/logout.php" class="btn btn-danger">🚪 Logout</a>
+          <a href="auth/logout.php" class="btn btn-danger">ðŸšª Logout</a>
         </div>
       </div>
     </div>
