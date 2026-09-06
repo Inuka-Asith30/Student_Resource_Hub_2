@@ -49,7 +49,7 @@ form > .btn-primary { width: 100%; }
 .welcome-banner h2 { font-size: 20px; margin-bottom: 6px; }
 .welcome-banner p { font-size: 13px; opacity: 0.9; }
 
-.stat-card { background: var(--white); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow); border-left: 4px solid var(--primary-blue); }
+.stat-card { background: var(--white); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);  }
 .stat-card .stat-number { font-size: 26px; font-weight: 700; color: var(--primary-blue-dark); }
 .stat-card .stat-label { font-size: 13px; color: var(--gray-text); margin-top: 4px; }
 
@@ -83,3 +83,8 @@ form > .btn-primary { width: 100%; }
 
 .main-logo { width: 90px; height: 90px; object-fit: contain; margin: 0 auto 16px auto; border-radius: 50%; }
 .nav-logo { width: 44px; height: 44px; object-fit: contain; margin: 0; border-radius: 50%; }
+
+.action-card { background: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.action-card h3 { font-size: 16px; margin-bottom: 6px; color: var(--dark-text); font-weight: 600; }
+.action-card p { font-size: 13px; color: var(--gray-text); margin-bottom: 20px; }
+.action-card a { display: inline-block; text-decoration: none; }
