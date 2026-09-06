@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Redirect to dashboard.html
                 echo "<script>
                         localStorage.setItem('isLoggedIn', 'true');
-                        window.location.href = '../dashboard.html';
+                        window.location.href = '../dashboard.php';
                       </script>";
                 exit();
             } else {

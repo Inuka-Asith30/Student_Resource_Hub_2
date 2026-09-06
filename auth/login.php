@@ -3,7 +3,7 @@ require_once '../includes/functions.php';
 require_once '../includes/db.php';
 
 if (isLoggedIn()) {
-    echo "<script>localStorage.setItem('isLoggedIn', 'true'); window.location.href = '../dashboard.html';</script>";
+    echo "<script>localStorage.setItem('isLoggedIn', 'true'); window.location.href = '../dashboard.php';</script>";
     exit();
 }
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user && password_verify($password, $user['password'])) {
             session_regenerate_id(true); // Prevent session fixation
             $_SESSION['user_id'] = $user['id'];
-            echo "<script>localStorage.setItem('isLoggedIn', 'true'); window.location.href = '../dashboard.html';</script>";
+            echo "<script>localStorage.setItem('isLoggedIn', 'true'); window.location.href = '../dashboard.php';</script>";
             exit();
         } else {
             $error = "Invalid email or password.";
