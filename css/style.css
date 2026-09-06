@@ -80,3 +80,6 @@ form > .btn-primary { width: 100%; }
   .login-card { padding: 30px 22px; }
   .search-bar { flex-direction: column; }
 }
+
+.main-logo { width: 90px; height: 90px; object-fit: contain; margin: 0 auto 16px auto; border-radius: 50%; }
+.nav-logo { width: 44px; height: 44px; object-fit: contain; margin: 0; border-radius: 50%; }
