@@ -51,14 +51,54 @@ $notesCount = $stmt->fetchColumn();
         <h2>Welcome back, <?= $username ?>! ðŸ‘‹</h2>
         <p>Manage and explore your student notes here.</p>
       </div>
-      <div class="row g-3">
-          <div class="col-md-4">
-              <div class="stat-card">
-                  <div class="stat-number"><?= htmlspecialchars($notesCount) ?></div>
-                  <div class="stat-label">Total Notes</div>
-              </div>
+      <section class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number"><?= htmlspecialchars($notesCount) ?></div>
+              <div class="stat-label">Total Notes</div>
+            </div>
           </div>
-      </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number">12</div>
+              <div class="stat-label">Subjects Available</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number">34</div>
+              <div class="stat-label">Notes You Downloaded</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Notes You Uploaded</div>
+            </div>
+          </div>
+        </section>
+  
+        <section class="row g-3 mb-4">
+          <div class="col-6">
+            <div class="card action-card h-100 border-0">
+              <h3>Browse Notes</h3>
+              <p>Search and download Notes by subject and year.</p>
+              <a href="pastpapers.php">
+                <button class="btn btn-primary">View Notes</button>
+              </a>
+            </div>
+          </div>
+  
+          <div class="col-6">
+            <div class="card action-card h-100 border-0">
+              <h3>Share a Past Notes</h3>
+              <p>Help other students by uploading a Notes you have.</p>
+              <a href="upload.php">
+                <button class="btn btn-primary">Upload Past Notes</button>
+              </a>
+            </div>
+          </div>
+        </section>
     </main>
   </div>
   <!-- Logout Modal -->
@@ -128,14 +168,54 @@ $notesCount = $stmt->fetchColumn();
         <h2>Welcome back, <?= $username ?>! ðŸ‘‹</h2>
         <p>Manage and explore your student notes here.</p>
       </div>
-      <div class="row g-3">
-          <div class="col-md-4">
-              <div class="stat-card">
-                  <div class="stat-number"><?= htmlspecialchars($notesCount) ?></div>
-                  <div class="stat-label">Total Notes</div>
-              </div>
+      <section class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number"><?= htmlspecialchars($notesCount) ?></div>
+              <div class="stat-label">Total Notes</div>
+            </div>
           </div>
-      </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number">12</div>
+              <div class="stat-label">Subjects Available</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number">34</div>
+              <div class="stat-label">Notes You Downloaded</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="card stat-card h-100 border-0">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Notes You Uploaded</div>
+            </div>
+          </div>
+        </section>
+  
+        <section class="row g-3 mb-4">
+          <div class="col-6">
+            <div class="card action-card h-100 border-0">
+              <h3>Browse Notes</h3>
+              <p>Search and download Notes by subject and year.</p>
+              <a href="pastpapers.php">
+                <button class="btn btn-primary">View Notes</button>
+              </a>
+            </div>
+          </div>
+  
+          <div class="col-6">
+            <div class="card action-card h-100 border-0">
+              <h3>Share a Past Notes</h3>
+              <p>Help other students by uploading a Notes you have.</p>
+              <a href="upload.php">
+                <button class="btn btn-primary">Upload Past Notes</button>
+              </a>
+            </div>
+          </div>
+        </section>
     </main>
   </div>
   <!-- Logout Modal -->
