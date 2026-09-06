@@ -28,7 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed = password_hash($password, PASSWORD_BCRYPT);
             $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
             if ($stmt->execute([$username, $email, $hashed])) {
-                $success = "Registration successful! You can now login.";
+                // Auto login user
+                $user_id = $pdo->lastInsertId();
+                session_regenerate_id(true);
+                $_SESSION['user_id'] = $user_id;
+
+                // Redirect to dashboard.html
+                echo "<script>
+                        localStorage.setItem('isLoggedIn', 'true');
+                        window.location.href = '../dashboard.html';
+                      </script>";
+                exit();
             } else {
                 $error = "An error occurred during registration.";
             }
