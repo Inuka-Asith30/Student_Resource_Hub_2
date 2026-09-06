@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
   <div class="login-page">
     <div class="card login-card border-0">
-      <div class="logo-placeholder">LOGO</div>
+      <img src="../images/logo.png" alt="Logo" class="main-logo" />
       <h1>Campus Portal</h1>
       <p class="subtitle">Student Past Paper Management System</p>
       
