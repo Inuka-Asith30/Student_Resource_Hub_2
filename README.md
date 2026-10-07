@@ -1,6 +1,7 @@
 # Student Resource Hub
 
-A PHP/MySQL web application for students to upload and browse past papers/notes.
+A lightweight, responsive PHP & MySQL web application designed for students to easily upload, organize, and browse past exam papers, lecture notes, and study materials.
+
 
 ## Setup Instructions
 
